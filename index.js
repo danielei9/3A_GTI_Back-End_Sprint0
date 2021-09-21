@@ -8,10 +8,15 @@
 let express = require('express');
 // Import Body parser
 let bodyParser = require('body-parser');
+// Import CORS
+let cors = require('cors');
+var morgan = require('morgan')
 // Import Mongoose
 let mongoose = require('mongoose');
 // Initialize the app
 let app = express();
+app.use(cors());
+app.use(morgan("tiny"));
 
 // Import routes
 let apiRoutes = require("./api-routes");
