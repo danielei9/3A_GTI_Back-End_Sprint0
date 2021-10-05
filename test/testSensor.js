@@ -39,7 +39,7 @@ describe('Sensors', () => {
             {
                 url: IP_PUERTO + "/sensors",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));
@@ -53,10 +53,10 @@ describe('Sensors', () => {
     //------------------------------------------------------------------------
     it("probar GET /sensor/:id", function (hecho) {
         request.get(
-            {   
-                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f" ,
+            {
+                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));
@@ -72,39 +72,39 @@ describe('Sensors', () => {
         sensor = new Sensor({ type: 'TESTOK', address: 'TESTOK' });
 
         request.patch(
-            {   
-                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f" ,
+            {
+                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" },
                 body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 request.get(
-                    {   
-                        url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f" ,
+                    {
+                        url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f",
                         headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-                       // body: JSON.stringify(sensor)
+                        // body: JSON.stringify(sensor)
                     },
                     function (er, res, crg) {
                         //console.log(JSON.parse(carga));
                         assert.equal(er, null, "¿ha habido un error?");
                         assert.equal(res.statusCode, 200, "¿El código no es 200 (OK)");
-                        assert.equal(JSON.parse(carga).data.type,JSON.parse(crg).data.type , "¿La carga no es OK");
+                        assert.equal(JSON.parse(carga).data.type, JSON.parse(crg).data.type, "¿La carga no es OK");
                     } // callback
                 ) // .get
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 hecho()
-                
+
             } // callback
         ) // .post
     }) // it
     //------------------------------------------------------------------------ 
     it("probar DELETE /sensor/:id", function (hecho) {
         request.delete(
-            {   
-                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f" ,
+            {
+                url: IP_PUERTO + "/sensors/615cc85ffd8baf8a30e8694f",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));

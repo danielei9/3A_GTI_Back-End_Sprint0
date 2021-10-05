@@ -16,7 +16,7 @@ describe('Measures', () => {
     //------------------------------------------------------------------------
     it("probar POST /measures", function (hecho) {
 
-        measure = new Measures({ _id: "615cd1b595f7e84958a9cb41",type: 'Test2', address: '123456789' });
+        measure = new Measures({ _id: "615cd1b595f7e84958a9cb41", type: 'Test2', address: '123456789' });
 
         request.post(
             {
@@ -39,7 +39,7 @@ describe('Measures', () => {
             {
                 url: IP_PUERTO + "/measures",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));
@@ -53,10 +53,10 @@ describe('Measures', () => {
     //------------------------------------------------------------------------
     it("probar GET /measures/:id", function (hecho) {
         request.get(
-            {   
-                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41" ,
+            {
+                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));
@@ -72,39 +72,39 @@ describe('Measures', () => {
         sensor = new Sensor({ type: 'TESTOK', address: 'TESTOK' });
 
         request.patch(
-            {   
-                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41" ,
+            {
+                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" },
                 body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 request.get(
-                    {   
-                        url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41" ,
+                    {
+                        url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41",
                         headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-                       // body: JSON.stringify(sensor)
+                        // body: JSON.stringify(sensor)
                     },
                     function (er, res, crg) {
                         //console.log(JSON.parse(carga));
                         assert.equal(er, null, "¿ha habido un error?");
                         assert.equal(res.statusCode, 200, "¿El código no es 200 (OK)");
-                        assert.equal(JSON.parse(carga).data.type,JSON.parse(crg).data.type , "¿La carga no es OK");
+                        assert.equal(JSON.parse(carga).data.type, JSON.parse(crg).data.type, "¿La carga no es OK");
                     } // callback
                 ) // .get
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 hecho()
-                
+
             } // callback
         ) // .post
     }) // it
     //------------------------------------------------------------------------ 
     it("probar DELETE /measures/:id", function (hecho) {
         request.delete(
-            {   
-                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41" ,
+            {
+                url: IP_PUERTO + "/measures/615cd1b595f7e84958a9cb41",
                 headers: { "User-Agent": "DanielBurru", "Content-Type": "application/json" }
-               // body: JSON.stringify(sensor)
+                // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
                 //console.log(JSON.parse(carga));

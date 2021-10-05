@@ -33,7 +33,7 @@ mongoose
   .connect(bdUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false, // comprobar esto
+    useFindAndModify: false, // TODO:checkThis
   })
   .then(() => {
     console.log("Database connection established");
@@ -41,8 +41,6 @@ mongoose
   .catch((err) => {
     console.error(`ERROR: ${err}`);
   });
-// Heroku Mongoose connection
-// mongoose.connect('mongodb://heroku_5686p02g:sia8asdni4jmu7qbn0ac1t75mf@ds349857.mlab.com:49857/heroku_5686p02g', { useNewUrlParser: true });
 
 var db = mongoose.connection;
 
