@@ -25,9 +25,22 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+//----------------------------------------------------------------------------------
+//------------------------------ BD ------------------------------------------------
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/Proyect3A', { useNewUrlParser: true});
-
+let bdUrl = 'mongodb://localhost/Proyect3A';
+mongoose
+  .connect(bdUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false, // comprobar esto
+  })
+  .then(() => {
+    console.log("Database connection established");
+  })
+  .catch((err) => {
+    console.error(`ERROR: ${err}`);
+  });
 // Heroku Mongoose connection
 // mongoose.connect('mongodb://heroku_5686p02g:sia8asdni4jmu7qbn0ac1t75mf@ds349857.mlab.com:49857/heroku_5686p02g', { useNewUrlParser: true });
 
@@ -38,16 +51,17 @@ if(!db)
     console.log("Error connecting db")
 else
     console.log("Db connected successfully")
-
-// Setup server port
+//---------------------------Setup server port---------------------------------------------
+// ----------------------------------------------------------------------------------------
 var port = process.env.PORT || 8080;
 
 // Send message for default URL
-//app.get('/sensors', (req, res) => res.send('Hello World with Express'));
-app.get('/', (req, res) => res.send('Hello World'));
+app.get('/', (req, res) => res.send('OK'));
 // Use Api routes in the App
 app.use('/api', apiRoutes);
 // Launch app to listen to specified port
 app.listen(port, function () {
     console.log("Running BuchuApiRest on PORT " + port);
 });
+
+module.exports = app;
