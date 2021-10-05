@@ -31,8 +31,7 @@ router.route('/sensors')
 
 router.route('/sensors/:sensor_id')
     .get(sensorController.view)
-    .patch(sensorController.update)
-    .put(sensorController.update)
+    .patch(sensorController.update) 
     .delete(sensorController.delete);
 //----------------------------------------------------------------
 //----------------------------------------------------------------
@@ -46,7 +45,6 @@ router.route('/measures')
 router.route('/measures/:measure_id')
     .get(measureController.view)
     .patch(measureController.update)
-    .put(measureController.update)
     .delete(measureController.delete);
 //----------------------------------------------------------------
 

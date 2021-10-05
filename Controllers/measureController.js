@@ -65,7 +65,7 @@ exports.view = function (req, res) {
             res.send(err);
         console.log(measure);
         res.json({
-            message: 'Sensor details loading..',
+            message: 'Measure details loading..',
             data: measure
         });
     });

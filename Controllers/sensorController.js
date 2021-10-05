@@ -45,6 +45,7 @@ exports.new = function (req, res) {
         }
         else {
             console.log(sensor);
+            console.log("New sensor created!");
             res.json({
                 message: 'New sensor created!',
                 data: sensor
@@ -57,12 +58,16 @@ exports.new = function (req, res) {
  *  id:String -> view -> {{Sensor:Json} , message:String} : JSON
  *  ---------------------------------------------------------------- */
 exports.view = function (req, res) {
+    console.log("Enrtar View")
+
     console.log(req.params)
+    console.log(req.params.sensor_id);
     Sensor.findById(req.params.sensor_id, function (err, sensor) {
         if (err)
             res.send(err);
         else {
             console.log(sensor)
+            console.log("sensor")
             res.json({
                 message: 'Sensor details loading..',
                 data: sensor
