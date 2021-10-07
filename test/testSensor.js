@@ -16,7 +16,7 @@ describe('Sensors', () => {
     //------------------------------------------------------------------------
     it("probar POST /sensors", function (hecho) {
 
-        sensor = new Sensor({ type: 'Test2', address: '123456789' });
+        sensor = new Sensor({ _id:"615cc85ffd8baf8a30e8694f", type: 'Test2', address: '123456789' });
 
         request.post(
             {
@@ -111,6 +111,7 @@ describe('Sensors', () => {
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 assert.equal(JSON.parse(carga).status, "success", "¿La carga no es OK");
+                console.log(JSON.parse(carga))
                 hecho()
             } // callback
         ) // .post

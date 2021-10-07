@@ -16,7 +16,7 @@ describe('Measures', () => {
     //------------------------------------------------------------------------
     it("probar POST /measures", function (hecho) {
 
-        measure = new Measures({ _id: "615cd1b595f7e84958a9cb41", type: 'Test2', address: '123456789' });
+        measure = new Measures({ _id: "615cd1b595f7e84958a9cb41", type: 'Test2', address: '123456789',value:10 });
 
         request.post(
             {
