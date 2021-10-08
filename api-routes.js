@@ -4,6 +4,19 @@
  *   DATE:           20/09/2021
  *   STATE:          DONE
  *  ---------------------------------------------------------------- */
+/**
+ * api-routers.js, contains all the routes defined for the API-REST.
+ * 
+ * **sensors**
+ * @sensors get -> get all sensors from DB
+ * **sensors** post -> create a new sensor in DB
+ * **sensors:ID** view -> get a especific sensor from DB
+ * **sensors:ID** patch -> update a especific sensor from DB
+ * **sensors:ID** delete -> delete a especific sensor from DB
+ * 
+ * 
+ * 
+ */
 // Initialize express router
 let router = require('express').Router();
 //----------------------------------------------------------------

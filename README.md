@@ -1,21 +1,46 @@
-# BUCHU API-REST 1.0
+api-routers.js, contains all the routes defined for the API-REST.
 
-An app demonstrating simple API implementation with NodeJs, Express and MongoDb
+**sensors**
 
-The `api` uri preceed all API endpoints and the following endpoints are currently available
-* GET `/api/measures`
-* POST `/api/measure`
-* GET `/api/measure/:id`
-* PUT `/api/measure/:id`
-* PATCH `/api/measure/:id`
-* DELETE `/api/measure/:id`
 
-* GET `/api/sensors`
-* POST `/api/sensor`
-* GET `/api/sensor/:id`
-* PUT `/api/sensor/:id`
-* PATCH `/api/sensor/:id`
-* DELETE `/api/sensor/:id`
+**Sensors**:  get -> get all sensors from DB
+**sensors** post -> create a new sensor in DB
+**sensors:ID** view -> get a especific sensor from DB
+**sensors:ID** patch -> update a especific sensor from DB
+**sensors:ID** delete -> delete a especific sensor from DB
 
-npm-start -> Init server
-npm-install -> Install package
+
+
+
+
+Index.js, contains all what you need to start the **server express**.
+
+
+
+**Express**:  Librarie which control the express server
+
+
+**BodyParser**:  Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+
+
+**Cors**:  CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+
+**Morgan**:  Create a new morgan logger middleware function using the given format and options. 
+The format argument may be a string of a predefined name (see below for the names), 
+a string of a format string, or a function that will produce a log entry.
+
+
+**Mongoose**:  Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. 
+Mongoose supports both promises and callbacks.
+
+
+**App**:  Variable which controll the express server
+
+
+**BdUrl**:  BBDD url
+
+
+**Port**:  server port
+
+
