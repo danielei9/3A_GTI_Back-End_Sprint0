@@ -5,6 +5,7 @@
  *   STATE:          DONE
  *  ---------------------------------------------------------------- */
 Measure = require('../Models/measureModel');
+MeasureLogic = require('../Logic/MeasuresLogic');
 //----------------------------------------------------------------
 // Handle actions
 //----------------------------------------------------------------
@@ -12,19 +13,12 @@ Measure = require('../Models/measureModel');
  *  -> index -> {Measure:JSON, Measure:JSON ...}
  *  ---------------------------------------------------------------- */
 exports.index = function (req, res) {
-    Measure.get(function (err, measures) {
-        if (err) {
-            res.json({
-                status: "error",
-                message: err,
-            });
-        }
-        console.log(measures)
-        res.json({
-            status: "success",
-            message: "Measure retrieved successfully",
-            data: measures
-        });
+   let measures = MeasureLogic.getAllMeasures;
+    //console.log(measures)
+    res.json({
+        status: "success",
+        message: "Measure retrieved successfully",
+        data: measures
     });
 };
 /* ----------------------------------------------------------------
@@ -32,26 +26,18 @@ exports.index = function (req, res) {
  *  value:String, address:String -> new -> {{Sensor:Json} , message:String} : JSON
  *  ---------------------------------------------------------------- */
 exports.new = function (req, res) {
-    var measure = new Measure();
+    let measure = new Measure();
     //sensor.createDate = Date.now;
     console.log("CreatingMeasure");
     //  sensor.activeDate = Date;
     measure.value = req.body.value;
     measure.address = req.body.address;
-    // save the sensor and check for errors
-    measure.save(function (err) {
-        // Check for validation error
-        if (err) {
-            res.json(err);
-            console.log(err);
-        }
-        else{
-        console.log(measure)
-            res.json({
-                message: 'New measure created!',
-                data: measure
-            });
-        }
+
+    let measureCreated = MeasureLogic.createMeasure;
+
+    res.json({
+        message: 'New measure created!',
+        data: measureCreated
     });
 };
 /* ----------------------------------------------------------------
