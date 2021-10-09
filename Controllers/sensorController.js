@@ -6,6 +6,7 @@
  *  ---------------------------------------------------------------- */
 
 Sensor = require('../Models/sensorModel');
+
 /* ----------------------------------------------------------------
  *                         Handle actions
  *  -> index -> {Sensor1:JSON, Sensor2:JSON ...}
@@ -32,7 +33,7 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     var sensor = new Sensor();
     //sensor.createDate = Date.now;
-    console.log("CreatingSensor");
+    //console.log("CreatingSensor");
     //  sensor.activeDate = Date;
     sensor.type = req.body.type;
     sensor.address = req.body.address;
@@ -41,11 +42,11 @@ exports.new = function (req, res) {
         // Check for validation error
         if (err) {
             res.json(err);
-            console.log(err);
+            //console.log(err);
         }
         else {
-            console.log(sensor);
-            console.log("New sensor created!");
+            //console.log(sensor);
+            //console.log("New sensor created!");
             res.json({
                 message: 'New sensor created!',
                 data: sensor
@@ -58,16 +59,16 @@ exports.new = function (req, res) {
  *  id:String -> view -> {{Sensor:Json} , message:String} : JSON
  *  ---------------------------------------------------------------- */
 exports.view = function (req, res) {
-    console.log("Enrtar View")
+    //console.log("Enrtar View")
 
-    console.log(req.params)
-    console.log(req.params.sensor_id);
+    //console.log(req.params)
+    //console.log(req.params.sensor_id);
     Sensor.findById(req.params.sensor_id, function (err, sensor) {
         if (err)
             res.send(err);
         else {
-            console.log(sensor)
-            console.log("sensor")
+           // console.log(sensor)
+          //  console.log("sensor")
             res.json({
                 message: 'Sensor details loading..',
                 data: sensor
@@ -91,7 +92,7 @@ exports.update = function (req, res) {
             if (err)
                 res.json(err);
             else {
-                console.log(sensor)
+               // console.log(sensor)
                 res.json({
                     message: 'Sensor Info updated',
                     data: sensor

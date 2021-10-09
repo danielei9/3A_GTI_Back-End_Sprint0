@@ -4,22 +4,27 @@
  *   DATE:           16/09/2021
  *   STATE:          DONE
  *  ---------------------------------------------------------------- */
+MeasuresLogic = require("../Logic/MeasuresLogic"); // Ruta correcta al archivo Js
 Measure = require('../Models/measureModel');
-MeasureLogic = require('../Logic/MeasuresLogic');
+
 //----------------------------------------------------------------
 // Handle actions
 //----------------------------------------------------------------
 /* ----------------------------------------------------------------
  *  -> index -> {Measure:JSON, Measure:JSON ...}
  *  ---------------------------------------------------------------- */
-exports.index = function (req, res) {
-   let measures = MeasureLogic.getAllMeasures;
-    //console.log(measures)
-    res.json({
-        status: "success",
-        message: "Measure retrieved successfully",
-        data: measures
+exports.index = async function (req, res) {
+    let ML = new MeasuresLogic();
+    ML.getAllMeasures(function (measures) {
+        //console.log(measures)
+        res.json({
+            status: "success",
+            message: "Measure retrieved successfully",
+            data: measures
+        })
     });
+
+
 };
 /* ----------------------------------------------------------------
             Handle create sensor actions
@@ -27,29 +32,29 @@ exports.index = function (req, res) {
  *  ---------------------------------------------------------------- */
 exports.new = function (req, res) {
     let measure = new Measure();
-    //sensor.createDate = Date.now;
-    console.log("CreatingMeasure");
-    //  sensor.activeDate = Date;
     measure.value = req.body.value;
     measure.address = req.body.address;
+    let ML = new MeasuresLogic(measure);
+    ML.createMeasure(measure).then(function () {
+        res.json({
+            status: "success",
+            message: "Measure retrieved successfully",
+            data: measure
+        });
+    })
 
-    let measureCreated = MeasureLogic.createMeasure;
 
-    res.json({
-        message: 'New measure created!',
-        data: measureCreated
-    });
 };
 /* ----------------------------------------------------------------
             Handle view measure info
  *  id:String -> view -> {{Sensor:Json} , message:String} : JSON
  *  ---------------------------------------------------------------- */
 exports.view = function (req, res) {
-    console.log(req.params)
+    //console.log(req.params)
     Measure.findById(req.params.measure_id, function (err, measure) {
         if (err)
             res.send(err);
-        console.log(measure);
+        // console.log(measure);
         res.json({
             message: 'Measure details loading..',
             data: measure
@@ -71,7 +76,7 @@ exports.update = function (req, res) {
         measure.save(function (err) {
             if (err)
                 res.json(err);
-            console.log(measure);
+            //console.log(measure);
             res.json({
                 message: 'Measure Info updated',
                 data: measure
@@ -95,3 +100,4 @@ exports.delete = function (req, res) {
         });
     });
 };
+

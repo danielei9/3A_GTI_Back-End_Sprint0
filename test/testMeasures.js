@@ -25,9 +25,11 @@ describe('Measures', () => {
                 body: JSON.stringify(measure)
             },
             function (err, respuesta, carga) {
+                //console.log(JSON.parse(carga));
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 assert.equal(JSON.parse(carga).message, "New measure created!", "¿La carga no es OK");
+               // assert.equal(JSON.parse(carga).message, measure, "¿La carga no es OK");
                 hecho()
             } // callback
         ) // .post
@@ -42,7 +44,7 @@ describe('Measures', () => {
                 // body: JSON.stringify(sensor)
             },
             function (err, respuesta, carga) {
-                //console.log(JSON.parse(carga));
+               // console.log(JSON.parse(carga));
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 assert.equal(JSON.parse(carga).status, "success", "¿La carga no es OK");
@@ -68,8 +70,8 @@ describe('Measures', () => {
         ) // .post
     }) // it
     //------------------------------------------------------------------------
-    it("probar PATCH /sensor/:id", function (hecho) {
-        sensor = new Sensor({ type: 'TESTOK', address: 'TESTOK' });
+    it("probar PATCH /measures/:id", function (hecho) {
+        sensor = new Sensor({ type: 'TESTOK', address: 'TESTOK'});
 
         request.patch(
             {

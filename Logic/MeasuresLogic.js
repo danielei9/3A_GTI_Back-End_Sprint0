@@ -1,13 +1,12 @@
 Measure = require('../Models/measureModel');
 
 class MeasuresLogic {
-    constructor(m) {
-        this.m = m;
+    constructor(measure) {
+        this.measure = measure;
     }
-
-    getAllMeasures() {
-        let measure = new Measure();
-        measure.get(function (err, measures) {
+    async getAllMeasures(hecho) {
+        //let measure = new Measure();
+        Measure.get(function (err, measures) {
             if (err) {
                 res.json({
                     status: "error",
@@ -15,26 +14,26 @@ class MeasuresLogic {
                 });
                 return err;
             }
-            console.log(measures)
-            return measures;
+            //console.log(measures)
+            return (hecho(measures));
         });
     }
-    createMeasure(){
-    let measure = this.m;
-    // save the sensor and check for errors
-    measure.save(function (err) {
-        // Check for validation error
-        if (err) {
-            res.json(err);
-            console.log(err);
-            return(err)
-        }
-        else {
-            console.log(measure)
-           return(measure)
-        }
-    });
+    async createMeasure(hecho) {
+        // save the sensor and check for errors
+       let m = new Measure;
+       m.save(function (err,m) {
+            // Check for validation error
+            if (err) {
+                console.log(err);
+                return (err)
+            }
+            else {
+               // console.log(m)
+                return (hecho)
+            }
+        });
     }
 
 
 }
+module.exports = MeasuresLogic

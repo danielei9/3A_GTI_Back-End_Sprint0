@@ -111,7 +111,7 @@ describe('Sensors', () => {
                 assert.equal(err, null, "¿ha habido un error?");
                 assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
                 assert.equal(JSON.parse(carga).status, "success", "¿La carga no es OK");
-                console.log(JSON.parse(carga))
+               //console.log(JSON.parse(carga))
                 hecho()
             } // callback
         ) // .post
