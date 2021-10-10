@@ -50,16 +50,16 @@ exports.new = function (req, res) {
  *  id:String -> view -> {{Sensor:Json} , message:String} : JSON
  *  ---------------------------------------------------------------- */
 exports.view = function (req, res) {
-    //console.log(req.params)
-    Measure.findById(req.params.measure_id, function (err, measure) {
-        if (err)
-            res.send(err);
-        // console.log(measure);
+    let id = req.params.measure_id
+    let ML = new MeasuresLogic();
+    ML.getMeasure(id, function (m) {
         res.json({
-            message: 'Measure details loading..',
-            data: measure
+            status: "success",
+            message: "Measure retrieved successfully",
+            data: m
         });
-    });
+    })
+
 };
 
 /* ----------------------------------------------------------------
@@ -72,7 +72,7 @@ exports.update = function (req, res) {
             res.send(err);
         measure.value = req.body.value;
         measure.address = req.body.address;
-        // save the sensor and check for errors
+        // save the measure and check errors
         measure.save(function (err) {
             if (err)
                 res.json(err);

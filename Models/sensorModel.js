@@ -19,3 +19,6 @@ var Sensor = module.exports = mongoose.model('sensor', sensorSchema);
 module.exports.get = function (callback, limit) {
     Sensor.find(callback).limit(limit);
 }
+module.exports.findById = function (callback, limit) {
+    Sensor.find(callback).limit(limit);
+}

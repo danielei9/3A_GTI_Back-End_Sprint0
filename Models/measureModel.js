@@ -16,5 +16,8 @@ var measureSchema = mongoose.Schema({
 //export
 var Measure = module.exports = mongoose.model('measure', measureSchema);
 module.exports.get = function (callback, limit) {
-    Sensor.find(callback).limit(limit);
+    Measure.find(callback).limit(limit);
+}
+module.exports.findById = function (callback, limit) {
+    Measure.find(callback).limit(limit);
 }
